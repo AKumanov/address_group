@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group People by Address</title>
+</head>
+<body>
+    <h1>Group People by Address</h1>
+    
+    <form method="post" action="/upload" enctype="multipart/form-data">
+        <h2>Upload CSV File:</h2>
+        <input type="file" name="file" accept=".csv">
+        <input type="submit" value="Upload">
+    </form>
+
+    <form method="post" action="/submit">
+        <h2>Manual Entry:</h2>
+        <textarea id="data" name="data" rows="10" cols="50"></textarea><br><br>
+        <button type="submit" id="submit">Submit</button>
+    </form>
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+
+    <br>
+    {% if grouped_data %}
+    <h2>Grouped Data:</h2>
+    <pre>{{ grouped_data }}</pre>
+    <a href="/download" id="download" download><button>Download</button></a>
+    {% else %}
+    <p>No data to download</p>
+    <button disabled>Download</button>
+    {% endif %}
+
+</body>
+</html>
